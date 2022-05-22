@@ -34,7 +34,7 @@ const shortUrl = async function (req, res) {
 
         //CHECK REQ.BODY IS EMPTY OR NOT----
         if (Object.keys(req.body).length == 0) {
-            return res.status(400).send({ status: false, message: "please enter lomg url in req.body" })
+            return res.status(400).send({ status: false, message: "please enter long url in req.body" })
         }
 
         // CHECK VALIDATION OF GIVEN LONG URL-----
@@ -51,12 +51,12 @@ const shortUrl = async function (req, res) {
         let cahcedLongUrlData = await GET_ASYNC(`${longUrl}`)
         
         if (cahcedLongUrlData) {
-            return res.status(200).send({ status: true, message: "url alrady shorted", data: JSON.parse(cahcedLongUrlData) })
+            return res.status(200).send({ status: true, message: "url already shorted", data: JSON.parse(cahcedLongUrlData) })
         } else {
             let url = await urlModel.findOne({ longUrl })
             if (url) {
                 await SET_ASYNC(`${longUrl}`, JSON.stringify(url))
-                return res.status(200).send({ status: true, message: "alrady shorted ", data: url })
+                return res.status(200).send({ status: true, message: "already shorted ", data: url })
             }
         }
         // GENERATE URLCODE------
@@ -71,7 +71,7 @@ const shortUrl = async function (req, res) {
         //console.log(findUrlCode)
         if (findUrlCode) {
             console.log(findUrlCode)
-            return res.status(400).send({ status: false, message: "UrlCode alrady present in db" })
+            return res.status(400).send({ status: false, message: "UrlCode already present in db" })
         }
 
 
@@ -86,7 +86,7 @@ const shortUrl = async function (req, res) {
         // FIND DOCUMENT HAVING SAME SHORTURL PRESENT OR NOT IN DB-----
         const findShortUrl = await urlModel.findOne({ shortUrl: shortUrl })
         if (findShortUrl) {
-            return res.status(400).send({ status: false, message: "Short-Url alrady present in db" })
+            return res.status(400).send({ status: false, message: "Short-Url already present in db" })
         }
 
         // MAKE OBJECT CONTAINING ALL MANDATORY FIELDS-----

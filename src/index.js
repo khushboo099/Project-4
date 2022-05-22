@@ -4,7 +4,7 @@ const express = require('express')
 // INSTATIATE THE EXPRESS APP------
 const app = express()
 
-//IMPORT BODY PARESR PACKAGE-----
+//IMPORT BODY PARSER PACKAGE-----
 const bodyParser = require('body-parser')
 
 // IMPORT ROUTE MODULE------
