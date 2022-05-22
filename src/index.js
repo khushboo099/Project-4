@@ -16,10 +16,7 @@ app.use(bodyParser.urlencoded({ extended:true }));
 
 // DECLARE  A DATABASE STRING URL----
 mongoose.connect('mongodb+srv://prince_chouhan9340:VmEz2U6wR9QeMWxw@cluster0.7obeg.mongodb.net/functionUp_project_4-db?retryWrites=true&w=majority',
-{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+{useNewUrlParser: true,})
 .then( () => console.log("mongoDB is connected"))
 .catch ( err => console.log(err))
 

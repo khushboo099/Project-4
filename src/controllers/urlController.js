@@ -49,6 +49,7 @@ const shortUrl = async function (req, res) {
 
         // FIND LONG URL ALRADY PRESENT OR NOT IN DB OR IN CASH IF IT IS IN DB SET INTO CACHE----
         let cahcedLongUrlData = await GET_ASYNC(`${longUrl}`)
+        
         if (cahcedLongUrlData) {
             return res.status(200).send({ status: true, message: "url alrady shorted", data: JSON.parse(cahcedLongUrlData) })
         } else {
@@ -115,7 +116,8 @@ const redirectUrl = async function (req, res) {
         // FINDING IN CACHE MOMORY----
         let cahcedProfileData = await GET_ASYNC(`${req.params.urlCode}`)
         cahcedProfileData = JSON.parse(cahcedProfileData)
-        console.log(cahcedProfileData, " data from cache")
+        // console.log(cahcedProfileData, " data from cache")
+        
         if (cahcedProfileData) {
             //FOR STATUS CODE 32 PLEASE DISABLE (Automatically follow redirects) IN POSTMAN SETTING BELOW HTTP REQUEST-----
             res.status(302).redirect(cahcedProfileData.longUrl)
